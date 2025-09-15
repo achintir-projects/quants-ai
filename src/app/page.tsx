@@ -1,6 +1,10 @@
 'use client'
 
+<<<<<<< HEAD
 import { useState, useEffect } from 'react'
+=======
+import { useState } from 'react'
+>>>>>>> d6e466b85a3e63aa609bbcc18e6867876e5de1be
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Badge } from '@/components/ui/badge'
@@ -18,6 +22,7 @@ import {
   BarChart3,
   Clock,
   Zap,
+<<<<<<< HEAD
   Brain,
   RefreshCw,
   CheckCircle,
@@ -35,6 +40,10 @@ import StrategyDiscoveryEngine from '@/components/ai/StrategyDiscoveryEngine'
 import AdaptiveStrategyManagement from '@/components/ai/AdaptiveStrategyManagement'
 import PredictiveRiskManager from '@/components/ai/PredictiveRiskManager'
 import IntelligentExecutionAgent from '@/components/ai/IntelligentExecutionAgent'
+=======
+  Brain
+} from 'lucide-react'
+>>>>>>> d6e466b85a3e63aa609bbcc18e6867876e5de1be
 
 interface PortfolioMetrics {
   totalValue: number
@@ -46,6 +55,7 @@ interface PortfolioMetrics {
   winRate: number
   cash: number
   margin: number
+<<<<<<< HEAD
   beta: number
   alpha: number
   informationRatio: number
@@ -92,6 +102,8 @@ interface MarketData {
   marketCap: number
   pe: number
   dividend: number
+=======
+>>>>>>> d6e466b85a3e63aa609bbcc18e6867876e5de1be
 }
 
 export default function TradingDashboard() {
@@ -104,6 +116,7 @@ export default function TradingDashboard() {
     maxDrawdown: -8.2,
     winRate: 62.5,
     cash: 150000,
+<<<<<<< HEAD
     margin: 850000,
     beta: 0.85,
     alpha: 3.2,
@@ -243,6 +256,11 @@ export default function TradingDashboard() {
     return () => clearInterval(timer)
   }, [])
 
+=======
+    margin: 850000
+  })
+
+>>>>>>> d6e466b85a3e63aa609bbcc18e6867876e5de1be
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
@@ -256,6 +274,7 @@ export default function TradingDashboard() {
     return `${value >= 0 ? '+' : ''}${value.toFixed(2)}%`
   }
 
+<<<<<<< HEAD
   const formatNumber = (value: number) => {
     return new Intl.NumberFormat().format(value)
   }
@@ -286,6 +305,15 @@ export default function TradingDashboard() {
         <div className="text-center space-y-4 py-8">
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
             <span className="gradient-text">AI-Powered</span>
+=======
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
+      <div className="max-w-7xl mx-auto p-6 space-y-6">
+        {/* Enhanced Header */}
+        <div className="text-center space-y-4 py-8">
+          <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
+            <span className="text-blue-600">AI-Powered</span>
+>>>>>>> d6e466b85a3e63aa609bbcc18e6867876e5de1be
             <br />
             <span className="text-gray-900 dark:text-white">Quantum Brain</span>
           </h1>
@@ -295,6 +323,7 @@ export default function TradingDashboard() {
           </p>
           
           <div className="flex flex-wrap justify-center items-center gap-4 pt-4">
+<<<<<<< HEAD
             <div className="px-4 py-2 bg-blue-500 text-white rounded-full card-hover">
               <Activity className="w-4 h-4 mr-1 inline" />
               Live Trading
@@ -308,13 +337,30 @@ export default function TradingDashboard() {
             <div className="px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-full card-hover">
               <Clock className="w-4 h-4 mr-1 inline" />
               {currentTime.toLocaleTimeString()}
+=======
+            <div className="px-4 py-2 bg-blue-500 text-white rounded-full">
+              <Activity className="w-4 h-4 mr-1 inline" />
+              Live Trading
+            </div>
+            <div className="px-4 py-2 bg-purple-500 text-white rounded-full">
+              <Brain className="w-4 h-4 mr-1 inline" />
+              AI Active
+            </div>
+            <div className="px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-full">
+              <Clock className="w-4 h-4 mr-1 inline" />
+              {new Date().toLocaleTimeString()}
+>>>>>>> d6e466b85a3e63aa609bbcc18e6867876e5de1be
             </div>
           </div>
         </div>
 
         {/* Enhanced Portfolio Overview */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<<<<<<< HEAD
           <Card className="card-hover bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-white/20 dark:border-gray-700/20">
+=======
+          <Card className="hover:shadow-lg transition-shadow">
+>>>>>>> d6e466b85a3e63aa609bbcc18e6867876e5de1be
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-300">Total Portfolio Value</CardTitle>
               <div className="p-2 bg-gradient-to-r from-green-400 to-blue-500 rounded-lg">
@@ -322,17 +368,29 @@ export default function TradingDashboard() {
               </div>
             </CardHeader>
             <CardContent>
+<<<<<<< HEAD
               <div className="text-2xl font-bold gradient-text">{formatCurrency(portfolioMetrics.totalValue)}</div>
+=======
+              <div className="text-2xl font-bold text-blue-600">{formatCurrency(portfolioMetrics.totalValue)}</div>
+>>>>>>> d6e466b85a3e63aa609bbcc18e6867876e5de1be
               <p className="text-xs text-gray-500 dark:text-gray-400">
                 {formatCurrency(portfolioMetrics.cash)} cash available
               </p>
               <div className="mt-2 h-1 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+<<<<<<< HEAD
                 <div className="h-full bg-gradient-to-r from-green-400 to-blue-500 rounded-full progress-animated" style={{ width: '85%' }}></div>
+=======
+                <div className="h-full bg-gradient-to-r from-green-400 to-blue-500 rounded-full" style={{ width: '85%' }}></div>
+>>>>>>> d6e466b85a3e63aa609bbcc18e6867876e5de1be
               </div>
             </CardContent>
           </Card>
 
+<<<<<<< HEAD
           <Card className="card-hover bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-white/20 dark:border-gray-700/20">
+=======
+          <Card className="hover:shadow-lg transition-shadow">
+>>>>>>> d6e466b85a3e63aa609bbcc18e6867876e5de1be
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-300">Daily P&L</CardTitle>
               <div className="p-2 bg-gradient-to-r from-green-400 to-emerald-500 rounded-lg">
@@ -359,7 +417,11 @@ export default function TradingDashboard() {
             </CardContent>
           </Card>
 
+<<<<<<< HEAD
           <Card className="card-hover bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-white/20 dark:border-gray-700/20">
+=======
+          <Card className="hover:shadow-lg transition-shadow">
+>>>>>>> d6e466b85a3e63aa609bbcc18e6867876e5de1be
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-300">Total Return</CardTitle>
               <div className="p-2 bg-gradient-to-r from-purple-400 to-pink-500 rounded-lg">
@@ -375,14 +437,22 @@ export default function TradingDashboard() {
               </p>
               <div className="mt-2 flex items-center space-x-2">
                 <div className="flex-1 h-1 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+<<<<<<< HEAD
                   <div className="h-full bg-gradient-to-r from-purple-400 to-pink-500 rounded-full progress-animated" style={{ width: '78%' }}></div>
+=======
+                  <div className="h-full bg-gradient-to-r from-purple-400 to-pink-500 rounded-full" style={{ width: '78%' }}></div>
+>>>>>>> d6e466b85a3e63aa609bbcc18e6867876e5de1be
                 </div>
                 <span className="text-xs text-gray-500 dark:text-gray-400">78%</span>
               </div>
             </CardContent>
           </Card>
 
+<<<<<<< HEAD
           <Card className="card-hover bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-white/20 dark:border-gray-700/20">
+=======
+          <Card className="hover:shadow-lg transition-shadow">
+>>>>>>> d6e466b85a3e63aa609bbcc18e6867876e5de1be
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-300">Risk Metrics</CardTitle>
               <div className="p-2 bg-gradient-to-r from-red-400 to-orange-500 rounded-lg">
@@ -397,13 +467,18 @@ export default function TradingDashboard() {
                 Max Drawdown
               </p>
               <div className="mt-2 flex items-center space-x-2">
+<<<<<<< HEAD
                 <div className="status-indicator status-warning"></div>
+=======
+                <div className="w-2 h-2 rounded-full bg-yellow-500"></div>
+>>>>>>> d6e466b85a3e63aa609bbcc18e6867876e5de1be
                 <span className="text-xs text-gray-500 dark:text-gray-400">Risk monitoring</span>
               </div>
             </CardContent>
           </Card>
         </div>
 
+<<<<<<< HEAD
         {/* Greeks Overview */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <Card className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-white/20 dark:border-gray-700/20">
@@ -467,6 +542,8 @@ export default function TradingDashboard() {
           </Card>
         </div>
 
+=======
+>>>>>>> d6e466b85a3e63aa609bbcc18e6867876e5de1be
         {/* Enhanced Risk Alert */}
         <Alert className="bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 border border-amber-200 dark:border-amber-800/30">
           <AlertTriangle className="h-4 w-4 text-amber-600" />
@@ -518,12 +595,17 @@ export default function TradingDashboard() {
                       <Brain className="w-5 h-5 text-white" />
                     </div>
                     <div>
+<<<<<<< HEAD
                       <div className="text-xl font-bold gradient-text">AI-Powered Quantum Brain</div>
+=======
+                      <div className="text-xl font-bold text-blue-600">AI-Powered Quantum Brain</div>
+>>>>>>> d6e466b85a3e63aa609bbcc18e6867876e5de1be
                       <div className="text-sm text-gray-600 dark:text-gray-300">Self-Improving Adaptive Trading Platform</div>
                     </div>
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
+<<<<<<< HEAD
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-4">
                       <h4 className="font-semibold text-gray-700 dark:text-gray-200 flex items-center gap-2">
@@ -650,6 +732,17 @@ export default function TradingDashboard() {
                   <IntelligentExecutionAgent />
                 </TabsContent>
               </Tabs>
+=======
+                  <div className="text-center py-8">
+                    <div className="text-6xl mb-4">🚀</div>
+                    <h3 className="text-xl font-semibold mb-2">Advanced AI System Active</h3>
+                    <p className="text-gray-600 dark:text-gray-300">
+                      The enhanced UI is now visible! This includes modern styling, gradients, and improved user experience.
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+>>>>>>> d6e466b85a3e63aa609bbcc18e6867876e5de1be
             </TabsContent>
 
             <TabsContent value="strategies" className="space-y-4">
@@ -659,6 +752,7 @@ export default function TradingDashboard() {
                   <CardDescription>Advanced options trading strategies</CardDescription>
                 </CardHeader>
                 <CardContent>
+<<<<<<< HEAD
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     <Card className="border-l-4 border-l-blue-500">
                       <CardHeader>
@@ -729,6 +823,9 @@ export default function TradingDashboard() {
                       </CardContent>
                     </Card>
                   </div>
+=======
+                  <p>Strategies module will be loaded here...</p>
+>>>>>>> d6e466b85a3e63aa609bbcc18e6867876e5de1be
                 </CardContent>
               </Card>
             </TabsContent>
@@ -736,6 +833,7 @@ export default function TradingDashboard() {
             <TabsContent value="positions" className="space-y-4">
               <Card>
                 <CardHeader>
+<<<<<<< HEAD
                   <CardTitle>Current Positions</CardTitle>
                   <CardDescription>Active trading positions with Greeks</CardDescription>
                 </CardHeader>
@@ -798,6 +896,13 @@ export default function TradingDashboard() {
                       </Card>
                     ))}
                   </div>
+=======
+                  <CardTitle>Positions Management</CardTitle>
+                  <CardDescription>Current trading positions</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p>Positions module will be loaded here...</p>
+>>>>>>> d6e466b85a3e63aa609bbcc18e6867876e5de1be
                 </CardContent>
               </Card>
             </TabsContent>
@@ -806,6 +911,7 @@ export default function TradingDashboard() {
               <Card>
                 <CardHeader>
                   <CardTitle>Performance Analytics</CardTitle>
+<<<<<<< HEAD
                   <CardDescription>Comprehensive portfolio performance metrics</CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -870,6 +976,12 @@ export default function TradingDashboard() {
                       </CardContent>
                     </Card>
                   </div>
+=======
+                  <CardDescription>Portfolio performance metrics</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p>Performance module will be loaded here...</p>
+>>>>>>> d6e466b85a3e63aa609bbcc18e6867876e5de1be
                 </CardContent>
               </Card>
             </TabsContent>
@@ -881,6 +993,7 @@ export default function TradingDashboard() {
                   <CardDescription>Strategy backtesting and validation</CardDescription>
                 </CardHeader>
                 <CardContent>
+<<<<<<< HEAD
                   <div className="text-center py-8">
                     <div className="text-6xl mb-4">📊</div>
                     <h3 className="text-xl font-semibold mb-2">Backtesting Module</h3>
@@ -888,6 +1001,9 @@ export default function TradingDashboard() {
                       Advanced backtesting capabilities with historical data analysis
                     </p>
                   </div>
+=======
+                  <p>Backtesting module will be loaded here...</p>
+>>>>>>> d6e466b85a3e63aa609bbcc18e6867876e5de1be
                 </CardContent>
               </Card>
             </TabsContent>
@@ -899,6 +1015,7 @@ export default function TradingDashboard() {
                   <CardDescription>Real-time market data feeds</CardDescription>
                 </CardHeader>
                 <CardContent>
+<<<<<<< HEAD
                   <div className="space-y-4">
                     {marketData.map((data) => (
                       <Card key={data.symbol} className="border-l-4 border-l-green-500">
@@ -941,6 +1058,9 @@ export default function TradingDashboard() {
                       </Card>
                     ))}
                   </div>
+=======
+                  <p>Market data module will be loaded here...</p>
+>>>>>>> d6e466b85a3e63aa609bbcc18e6867876e5de1be
                 </CardContent>
               </Card>
             </TabsContent>
@@ -952,6 +1072,7 @@ export default function TradingDashboard() {
                   <CardDescription>Risk monitoring and management</CardDescription>
                 </CardHeader>
                 <CardContent>
+<<<<<<< HEAD
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-4">
                       <h4 className="font-semibold text-gray-700 dark:text-gray-200">Portfolio Risk Metrics</h4>
@@ -996,6 +1117,9 @@ export default function TradingDashboard() {
                       </div>
                     </div>
                   </div>
+=======
+                  <p>Risk management module will be loaded here...</p>
+>>>>>>> d6e466b85a3e63aa609bbcc18e6867876e5de1be
                 </CardContent>
               </Card>
             </TabsContent>

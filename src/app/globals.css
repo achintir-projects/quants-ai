@@ -232,7 +232,11 @@
   background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
 }
 
+<<<<<<< HEAD
 /* Advanced loading animations */
+=======
+/* Loading animation */
+>>>>>>> d6e466b85a3e63aa609bbcc18e6867876e5de1be
 .loading-dots {
   display: inline-block;
 }
@@ -260,6 +264,7 @@
   }
 }
 
+<<<<<<< HEAD
 /* Advanced skeleton loading */
 .skeleton-loading {
   background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
@@ -483,6 +488,8 @@
   }
 }
 
+=======
+>>>>>>> d6e466b85a3e63aa609bbcc18e6867876e5de1be
 /* Card hover effects */
 .card-hover {
   transition: all 0.3s ease;
