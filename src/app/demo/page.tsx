@@ -45,12 +45,20 @@ export default function DemoPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
-      <div className="max-w-7xl mx-auto p-6 space-y-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-900 dark:via-blue-900 dark:to-indigo-900 relative overflow-hidden">
+      {/* Animated Background Blobs */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 -left-40 w-80 h-80 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+        <div className="absolute -bottom-40 -right-40 w-80 h-80 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+      </div>
+
+      <div className="relative max-w-7xl mx-auto p-6 space-y-6">
         {/* Header */}
         <div className="text-center space-y-4 py-8">
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
-            <span className="text-blue-600">Fed/CPI Market Event</span>
+            <span className="gradient-text">Fed/CPI Market Event</span>
             <br />
             <span className="text-gray-900 dark:text-white">Demo Module</span>
           </h1>
@@ -138,7 +146,7 @@ export default function DemoPage() {
               <TabsContent value="overview" className="space-y-6">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                   {/* Event Overview */}
-                  <Card>
+                  <Card className="card-hover bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-white/20 dark:border-gray-700/20">
                     <CardHeader>
                       <CardTitle>Current Event Overview</CardTitle>
                       <CardDescription>Summary of the selected market event</CardDescription>
@@ -188,7 +196,7 @@ export default function DemoPage() {
                   </Card>
 
                   {/* Demo Instructions */}
-                  <Card>
+                  <Card className="card-hover bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-white/20 dark:border-gray-700/20">
                     <CardHeader>
                       <CardTitle>How to Use This Demo</CardTitle>
                       <CardDescription>Step-by-step guide for presenting the demo</CardDescription>
@@ -247,7 +255,7 @@ export default function DemoPage() {
 
         {/* Demo Mode Disabled */}
         {!isDemoMode && (
-          <Card>
+          <Card className="card-hover bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-white/20 dark:border-gray-700/20">
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
                 <Pause className="w-5 h-5" />

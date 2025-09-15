@@ -45,3 +45,31 @@ Node.js v22.19.0
 Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
  GET / 200 in 78ms
  GET / 200 in 83ms
+ ✓ Compiled /_not-found in 459ms (846 modules)
+ GET / 404 in 616ms
+ GET /_next/static/css/app/layout.css?v=1757975973899 404 in 37ms
+ GET /_next/static/chunks/main-app.js?v=1757975973899 404 in 35ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 54ms
+ GET /_next/static/chunks/app/layout.js 404 in 33ms
+ GET / 200 in 118ms
+ GET /_next/static/css/app/layout.css?v=1757975978203 404 in 46ms
+ GET /_next/static/chunks/main-app.js?v=1757975978203 404 in 31ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 98ms
+ GET /_next/static/chunks/app/layout.js 404 in 63ms
+ GET /_next/static/chunks/app/page.js 404 in 61ms
+ GET / 200 in 63ms
+ GET /_next/static/css/app/layout.css?v=1757975990192 404 in 146ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 146ms
+ GET /_next/static/chunks/main-app.js?v=1757975990192 404 in 69ms
+ GET /_next/static/chunks/app/layout.js 404 in 75ms
+ GET /_next/static/chunks/app/page.js 404 in 29ms
+ GET / 200 in 82ms
+ GET /_next/static/css/app/layout.css?v=1757976181742 404 in 44ms
+ GET /_next/static/chunks/main-app.js?v=1757976181742 404 in 90ms
+ GET /_next/static/chunks/app/layout.js 404 in 101ms
+ GET /_next/static/chunks/app/page.js 404 in 58ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 60ms
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m

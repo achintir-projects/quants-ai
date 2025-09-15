@@ -71,12 +71,20 @@ export default function TradingDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
-      <div className="max-w-7xl mx-auto p-6 space-y-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-900 dark:via-blue-900 dark:to-indigo-900 relative overflow-hidden">
+      {/* Animated Background Blobs */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 -left-40 w-80 h-80 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+        <div className="absolute -bottom-40 -right-40 w-80 h-80 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+      </div>
+
+      <div className="relative max-w-7xl mx-auto p-6 space-y-6">
         {/* Enhanced Header */}
         <div className="text-center space-y-4 py-8">
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
-            <span className="text-blue-600">AI-Powered</span>
+            <span className="gradient-text">AI-Powered</span>
             <br />
             <span className="text-gray-900 dark:text-white">Quantum Brain</span>
           </h1>
@@ -86,17 +94,19 @@ export default function TradingDashboard() {
           </p>
           
           <div className="flex flex-wrap justify-center items-center gap-4 pt-4">
-            <div className="px-4 py-2 bg-blue-500 text-white rounded-full">
+            <div className="px-4 py-2 bg-blue-500 text-white rounded-full card-hover">
               <Activity className="w-4 h-4 mr-1 inline" />
               Live Trading
+              <div className="status-indicator status-active ml-2"></div>
             </div>
-            <div className="px-4 py-2 bg-purple-500 text-white rounded-full">
+            <div className="px-4 py-2 bg-purple-500 text-white rounded-full card-hover">
               <Brain className="w-4 h-4 mr-1 inline" />
               AI Active
+              <div className="status-indicator status-active ml-2"></div>
             </div>
-            <div className="px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-full">
+            <div className="px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-full card-hover">
               <Clock className="w-4 h-4 mr-1 inline" />
-              {new Date().toLocaleTimeString()}
+              {currentTime.toLocaleTimeString()}
             </div>
           </div>
         </div>
@@ -114,7 +124,7 @@ export default function TradingDashboard() {
 
         {/* Enhanced Portfolio Overview */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <Card className="hover:shadow-lg transition-shadow">
+          <Card className="card-hover bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-white/20 dark:border-gray-700/20">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-300">Total Portfolio Value</CardTitle>
               <div className="p-2 bg-gradient-to-r from-green-400 to-blue-500 rounded-lg">
@@ -122,17 +132,17 @@ export default function TradingDashboard() {
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-blue-600">{formatCurrency(portfolioMetrics.totalValue)}</div>
+              <div className="text-2xl font-bold gradient-text">{formatCurrency(portfolioMetrics.totalValue)}</div>
               <p className="text-xs text-gray-500 dark:text-gray-400">
                 {formatCurrency(portfolioMetrics.cash)} cash available
               </p>
               <div className="mt-2 h-1 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                <div className="h-full bg-gradient-to-r from-green-400 to-blue-500 rounded-full" style={{ width: '85%' }}></div>
+                <div className="h-full bg-gradient-to-r from-green-400 to-blue-500 rounded-full progress-animated" style={{ width: '85%' }}></div>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="hover:shadow-lg transition-shadow">
+          <Card className="card-hover bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-white/20 dark:border-gray-700/20">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-300">Daily P&L</CardTitle>
               <div className="p-2 bg-gradient-to-r from-green-400 to-emerald-500 rounded-lg">
@@ -159,7 +169,7 @@ export default function TradingDashboard() {
             </CardContent>
           </Card>
 
-          <Card className="hover:shadow-lg transition-shadow">
+          <Card className="card-hover bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-white/20 dark:border-gray-700/20">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-300">Total Return</CardTitle>
               <div className="p-2 bg-gradient-to-r from-purple-400 to-pink-500 rounded-lg">
@@ -175,14 +185,14 @@ export default function TradingDashboard() {
               </p>
               <div className="mt-2 flex items-center space-x-2">
                 <div className="flex-1 h-1 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                  <div className="h-full bg-gradient-to-r from-purple-400 to-pink-500 rounded-full" style={{ width: '78%' }}></div>
+                  <div className="h-full bg-gradient-to-r from-purple-400 to-pink-500 rounded-full progress-animated" style={{ width: '78%' }}></div>
                 </div>
                 <span className="text-xs text-gray-500 dark:text-gray-400">78%</span>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="hover:shadow-lg transition-shadow">
+          <Card className="card-hover bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-white/20 dark:border-gray-700/20">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-300">Risk Metrics</CardTitle>
               <div className="p-2 bg-gradient-to-r from-red-400 to-orange-500 rounded-lg">
@@ -198,7 +208,7 @@ export default function TradingDashboard() {
               </p>
               <div className="mt-2 flex items-center space-x-2">
                 <div className="flex-1 h-1 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                  <div className="h-full bg-gradient-to-r from-red-400 to-orange-500 rounded-full" style={{ width: '35%' }}></div>
+                  <div className="h-full bg-gradient-to-r from-red-400 to-orange-500 rounded-full progress-animated" style={{ width: '35%' }}></div>
                 </div>
                 <span className="text-xs text-gray-500 dark:text-gray-400">Low Risk</span>
               </div>
@@ -208,7 +218,7 @@ export default function TradingDashboard() {
 
         {/* Quick Actions */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Card className="hover:shadow-lg transition-all hover:scale-105">
+          <Card className="card-hover bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-white/20 dark:border-gray-700/20">
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
                 <Brain className="h-5 w-5 text-blue-600" />
@@ -219,7 +229,7 @@ export default function TradingDashboard() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <Button className="w-full" asChild>
+              <Button className="w-full btn-animate" asChild>
                 <Link href="/demo">
                   <Play className="w-4 h-4 mr-2" />
                   Launch Demo
@@ -228,7 +238,7 @@ export default function TradingDashboard() {
             </CardContent>
           </Card>
 
-          <Card className="hover:shadow-lg transition-all hover:scale-105">
+          <Card className="card-hover bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-white/20 dark:border-gray-700/20">
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
                 <Target className="h-5 w-5 text-green-600" />
@@ -239,13 +249,13 @@ export default function TradingDashboard() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <Button variant="outline" className="w-full">
+              <Button variant="outline" className="w-full btn-animate">
                 Manage Strategies
               </Button>
             </CardContent>
           </Card>
 
-          <Card className="hover:shadow-lg transition-all hover:scale-105">
+          <Card className="card-hover bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-white/20 dark:border-gray-700/20">
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
                 <Shield className="h-5 w-5 text-red-600" />
@@ -256,7 +266,7 @@ export default function TradingDashboard() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <Button variant="outline" className="w-full">
+              <Button variant="outline" className="w-full btn-animate">
                 Risk Controls
               </Button>
             </CardContent>
@@ -264,7 +274,7 @@ export default function TradingDashboard() {
         </div>
 
         {/* Recent Activity */}
-        <Card>
+        <Card className="card-hover bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-white/20 dark:border-gray-700/20">
           <CardHeader>
             <CardTitle>Recent Activity</CardTitle>
             <CardDescription>Latest AI decisions and market events</CardDescription>
