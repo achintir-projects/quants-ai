@@ -1,9 +1,6 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,20 +10,314 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// User Management
 model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  name      String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id            String   @id @default(cuid())
+  email         String   @unique
+  name          String?
+  role          UserRole @default(TRADER)
+  capital       Float    @default(100000)
+  riskTolerance RiskLevel @default(MODERATE)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Relations
+  portfolios    Portfolio[]
+  strategies    Strategy[]
+  trades        Trade[]
+  riskSettings  RiskSetting[]
+  backtests     Backtest[]
+
+  @@map("users")
 }
 
-model Post {
-  id        String   @id @default(cuid())
-  title     String
-  content   String?
-  published Boolean  @default(false)
-  authorId  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+enum UserRole {
+  ADMIN
+  TRADER
+  ANALYST
+  VIEWER
+}
+
+enum RiskLevel {
+  CONSERVATIVE
+  MODERATE
+  AGGRESSIVE
+}
+
+// Portfolio Management
+model Portfolio {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  totalValue  Float    @default(0)
+  cash        Float    @default(0)
+  margin      Float    @default(0)
+  status      PortfolioStatus @default(ACTIVE)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  positions   Position[]
+  performance PortfolioPerformance[]
+  trades      Trade[]
+
+  @@map("portfolios")
+}
+
+enum PortfolioStatus {
+  ACTIVE
+  PAUSED
+  CLOSED
+}
+
+// Trading Strategies
+model Strategy {
+  id            String   @id @default(cuid())
+  name          String
+  description   String?
+  type          StrategyType
+  status        StrategyStatus @default(DRAFT)
+  parameters    Json     // Strategy parameters as JSON
+  allocation    Float    @default(0) // Percentage of capital allocated
+  maxRisk       Float    @default(0.02) // Maximum risk per trade
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Relations
+  userId        String
+  user          User     @relation(fields: [userId], references: [id])
+  trades        Trade[]
+  performance   StrategyPerformance[]
+  backtests     Backtest[]
+  positions     Position[]
+
+  @@map("strategies")
+}
+
+enum StrategyType {
+  DELTA_NEUTRAL_VOLATILITY
+  SKEW_ARBITRAGE
+  CALENDAR_SPREAD
+  DISPERSION_TRADING
+  CORRELATION_TRADING
+  EVENT_DRIVEN
+}
+
+enum StrategyStatus {
+  DRAFT
+  TESTING
+  ACTIVE
+  PAUSED
+  STOPPED
+}
+
+// Options Contracts
+model OptionContract {
+  id            String   @id @default(cuid())
+  symbol        String
+  underlying    String
+  type          OptionType
+  strike        Float
+  expiration    DateTime
+  lastPrice     Float?
+  bid           Float?
+  ask           Float?
+  volume        Int      @default(0)
+  openInterest  Int      @default(0)
+  impliedVol    Float?
+  delta         Float?
+  gamma         Float?
+  theta         Float?
+  vega          Float?
+  rho           Float?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Relations
+  positions     Position[]
+  trades        Trade[]
+  marketData    MarketData[]
+
+  @@map("option_contracts")
+}
+
+enum OptionType {
+  CALL
+  PUT
+}
+
+// Market Data
+model MarketData {
+  id            String   @id @default(cuid())
+  contractId    String
+  contract      OptionContract @relation(fields: [contractId], references: [id])
+  timestamp     DateTime @default(now())
+  price         Float
+  bid           Float
+  ask           Float
+  volume        Int
+  openInterest  Int
+  impliedVol    Float
+  underlyingPrice Float
+  createdAt     DateTime @default(now())
+
+  @@map("market_data")
+}
+
+// Positions
+model Position {
+  id            String   @id @default(cuid())
+  portfolioId   String
+  portfolio     Portfolio @relation(fields: [portfolioId], references: [id])
+  contractId    String
+  contract      OptionContract @relation(fields: [contractId], references: [id])
+  strategyId    String?
+  strategy      Strategy? @relation(fields: [strategyId], references: [id])
+  quantity      Int      // Positive for long, negative for short
+  entryPrice    Float
+  currentPrice  Float?
+  unrealizedPnL Float?
+  realizedPnL   Float    @default(0)
+  status        PositionStatus @default(OPEN)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Relations
+  trades        Trade[]
+
+  @@map("positions")
+}
+
+enum PositionStatus {
+  OPEN
+  CLOSED
+  EXPIRED
+  ASSIGNED
+}
+
+// Trades
+model Trade {
+  id            String   @id @default(cuid())
+  portfolioId   String
+  portfolio     Portfolio @relation(fields: [portfolioId], references: [id])
+  strategyId    String?
+  strategy      Strategy? @relation(fields: [strategyId], references: [id])
+  contractId    String
+  contract      OptionContract @relation(fields: [contractId], references: [id])
+  userId        String
+  user          User     @relation(fields: [userId], references: [id])
+  positionId    String?
+  position      Position? @relation(fields: [positionId], references: [id])
+  type          TradeType
+  quantity      Int
+  price         Float
+  commission    Float    @default(0)
+  slippage      Float    @default(0)
+  status        TradeStatus @default(FILLED)
+  createdAt     DateTime @default(now())
+
+  @@map("trades")
+}
+
+enum TradeType {
+  BUY_TO_OPEN
+  SELL_TO_OPEN
+  BUY_TO_CLOSE
+  SELL_TO_CLOSE
+}
+
+enum TradeStatus {
+  PENDING
+  FILLED
+  CANCELLED
+  REJECTED
+}
+
+// Risk Management
+model RiskSetting {
+  id                  String   @id @default(cuid())
+  userId              String
+  user                User     @relation(fields: [userId], references: [id])
+  maxPortfolioRisk    Float    @default(0.15) // 15% max portfolio risk
+  maxPositionRisk     Float    @default(0.02) // 2% max position risk
+  maxCorrelation      Float    @default(0.7)  // 70% max correlation
+  maxLeverage         Float    @default(3.0)  // 3x max leverage
+  maxDrawdown         Float    @default(0.15) // 15% max drawdown
+  dailyLossLimit      Float    @default(0.05) // 5% daily loss limit
+  volatilityThreshold Float    @default(0.3)  // 30% volatility threshold
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  @@map("risk_settings")
+}
+
+// Performance Tracking
+model PortfolioPerformance {
+  id            String   @id @default(cuid())
+  portfolioId   String
+  portfolio     Portfolio @relation(fields: [portfolioId], references: [id])
+  date          DateTime @default(now())
+  totalValue    Float
+  cash          Float
+  margin        Float
+  pnl           Float
+  returns       Float
+  sharpeRatio   Float?
+  sortinoRatio  Float?
+  maxDrawdown   Float?
+  winRate       Float?
+  createdAt     DateTime @default(now())
+
+  @@map("portfolio_performance")
+}
+
+model StrategyPerformance {
+  id            String   @id @default(cuid())
+  strategyId    String
+  strategy      Strategy @relation(fields: [strategyId], references: [id])
+  date          DateTime @default(now())
+  totalReturn   Float
+  sharpeRatio   Float?
+  sortinoRatio  Float?
+  maxDrawdown   Float?
+  winRate       Float?
+  profitFactor  Float?
+  tradesCount   Int      @default(0)
+  createdAt     DateTime @default(now())
+
+  @@map("strategy_performance")
+}
+
+// Backtesting
+model Backtest {
+  id            String   @id @default(cuid())
+  name          String
+  strategyId    String
+  strategy      Strategy @relation(fields: [strategyId], references: [id])
+  userId        String
+  user          User     @relation(fields: [userId], references: [id])
+  startDate     DateTime
+  endDate       DateTime
+  initialCapital Float
+  finalCapital  Float?
+  totalReturn   Float?
+  sharpeRatio   Float?
+  maxDrawdown   Float?
+  winRate       Float?
+  parameters    Json     // Backtest parameters
+  results       Json     // Detailed backtest results
+  status        BacktestStatus @default(PENDING)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@map("backtests")
+}
+
+enum BacktestStatus {
+  PENDING
+  RUNNING
+  COMPLETED
+  FAILED
 }
