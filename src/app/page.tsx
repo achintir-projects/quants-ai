@@ -25,6 +25,7 @@ import CalendarSpread from '@/components/strategies/CalendarSpread'
 import RiskManagement from '@/components/risk/RiskManagement'
 import PortfolioManagement from '@/components/portfolio/PortfolioManagement'
 import MarketData from '@/components/market/MarketData'
+import BacktestingEngine from '@/components/backtesting/BacktestingEngine'
 
 interface PortfolioMetrics {
   totalValue: number
@@ -277,10 +278,11 @@ export default function TradingDashboard() {
 
         {/* Main Content Tabs */}
         <Tabs defaultValue="strategies" className="space-y-4">
-          <TabsList className="grid w-full grid-cols-5">
+          <TabsList className="grid w-full grid-cols-6">
             <TabsTrigger value="strategies">Strategies</TabsTrigger>
             <TabsTrigger value="positions">Positions</TabsTrigger>
             <TabsTrigger value="performance">Performance</TabsTrigger>
+            <TabsTrigger value="backtesting">Backtesting</TabsTrigger>
             <TabsTrigger value="market">Market Data</TabsTrigger>
             <TabsTrigger value="risk">Risk Management</TabsTrigger>
           </TabsList>
@@ -371,6 +373,10 @@ export default function TradingDashboard() {
 
           <TabsContent value="performance" className="space-y-4">
             <PortfolioManagement />
+          </TabsContent>
+
+          <TabsContent value="backtesting" className="space-y-4">
+            <BacktestingEngine />
           </TabsContent>
 
           <TabsContent value="market" className="space-y-4">
