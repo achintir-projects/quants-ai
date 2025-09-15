@@ -68,167 +68,254 @@ export default function TradingDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-background p-6">
-      <div className="max-w-7xl mx-auto space-y-6">
-        {/* Header */}
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold tracking-tight">AI-Powered Quantum Brain</h1>
-            <p className="text-muted-foreground">Self-Improving Adaptive Trading Platform</p>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-900 dark:via-blue-900 dark:to-indigo-900">
+      {/* Animated background */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+        <div className="absolute top-40 left-40 w-80 h-80 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+      </div>
+      
+      <div className="relative z-10 max-w-7xl mx-auto p-6 space-y-6">
+        {/* Enhanced Header */}
+        <div className="text-center space-y-4 py-8">
+          <div className="inline-flex items-center space-x-2 px-4 py-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-full border border-white/20 dark:border-gray-700/20">
+            <div className="status-indicator status-active"></div>
+            <span className="text-sm font-medium text-gray-600 dark:text-gray-300">SYSTEM LIVE</span>
           </div>
-          <div className="flex items-center space-x-2">
-            <Badge variant="outline" className="text-green-600 border-green-600">
-              <Activity className="w-3 h-3 mr-1" />
+          
+          <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
+            <span className="gradient-text">AI-Powered</span>
+            <br />
+            <span className="text-gray-900 dark:text-white">Quantum Brain</span>
+          </h1>
+          
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            Self-Improving Adaptive Trading Platform with Advanced Machine Learning
+          </p>
+          
+          <div className="flex flex-wrap justify-center items-center gap-4 pt-4">
+            <Badge variant="outline" className="gradient-bg text-white border-none px-4 py-2 text-sm font-medium hover-scale">
+              <Activity className="w-4 h-4 mr-1" />
               Live Trading
             </Badge>
-            <Badge variant="outline" className="text-blue-600 border-blue-600">
-              <Brain className="w-3 h-3 mr-1" />
+            <Badge variant="outline" className="bg-gradient-to-r from-blue-500 to-purple-600 text-white border-none px-4 py-2 text-sm font-medium hover-scale">
+              <Brain className="w-4 h-4 mr-1" />
               AI Active
             </Badge>
-            <Badge variant="outline">
-              <Clock className="w-3 h-3 mr-1" />
+            <Badge variant="outline" className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-white/20 dark:border-gray-700/20 px-4 py-2 text-sm font-medium hover-scale">
+              <Clock className="w-4 h-4 mr-1" />
               {new Date().toLocaleTimeString()}
             </Badge>
           </div>
         </div>
 
-        {/* Portfolio Overview */}
+        {/* Enhanced Portfolio Overview */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <Card>
+          <Card className="card-hover bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-white/20 dark:border-gray-700/20">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Total Portfolio Value</CardTitle>
-              <DollarSign className="h-4 w-4 text-muted-foreground" />
+              <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-300">Total Portfolio Value</CardTitle>
+              <div className="p-2 bg-gradient-to-r from-green-400 to-blue-500 rounded-lg">
+                <DollarSign className="h-4 w-4 text-white" />
+              </div>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{formatCurrency(portfolioMetrics.totalValue)}</div>
-              <p className="text-xs text-muted-foreground">
+              <div className="text-2xl font-bold gradient-text">{formatCurrency(portfolioMetrics.totalValue)}</div>
+              <p className="text-xs text-gray-500 dark:text-gray-400">
                 {formatCurrency(portfolioMetrics.cash)} cash available
               </p>
+              <div className="mt-2 h-1 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                <div className="h-full bg-gradient-to-r from-green-400 to-blue-500 rounded-full" style={{ width: '85%' }}></div>
+              </div>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="card-hover bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-white/20 dark:border-gray-700/20">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Daily P&L</CardTitle>
-              {portfolioMetrics.dailyPnL >= 0 ? (
-                <TrendingUp className="h-4 w-4 text-green-600" />
-              ) : (
-                <TrendingDown className="h-4 w-4 text-red-600" />
-              )}
+              <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-300">Daily P&L</CardTitle>
+              <div className="p-2 bg-gradient-to-r from-green-400 to-emerald-500 rounded-lg">
+                {portfolioMetrics.dailyPnL >= 0 ? (
+                  <TrendingUp className="h-4 w-4 text-white" />
+                ) : (
+                  <TrendingDown className="h-4 w-4 text-white" />
+                )}
+              </div>
             </CardHeader>
             <CardContent>
               <div className={`text-2xl font-bold ${portfolioMetrics.dailyPnL >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                 {formatCurrency(portfolioMetrics.dailyPnL)}
               </div>
-              <p className="text-xs text-muted-foreground">
+              <p className="text-xs text-gray-500 dark:text-gray-400">
                 {formatPercentage(portfolioMetrics.dailyReturn)} today
               </p>
+              <div className="mt-2 flex items-center space-x-1">
+                <div className={`w-2 h-2 rounded-full ${portfolioMetrics.dailyPnL >= 0 ? 'bg-green-500' : 'bg-red-500'}`}></div>
+                <span className="text-xs text-gray-500 dark:text-gray-400">
+                  {portfolioMetrics.dailyPnL >= 0 ? 'Positive' : 'Negative'} momentum
+                </span>
+              </div>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="card-hover bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-white/20 dark:border-gray-700/20">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Total Return</CardTitle>
-              <BarChart3 className="h-4 w-4 text-muted-foreground" />
+              <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-300">Total Return</CardTitle>
+              <div className="p-2 bg-gradient-to-r from-purple-400 to-pink-500 rounded-lg">
+                <BarChart3 className="h-4 w-4 text-white" />
+              </div>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-green-600">
                 {formatPercentage(portfolioMetrics.totalReturn)}
               </div>
-              <p className="text-xs text-muted-foreground">
+              <p className="text-xs text-gray-500 dark:text-gray-400">
                 Sharpe: {portfolioMetrics.sharpeRatio.toFixed(2)}
               </p>
+              <div className="mt-2 flex items-center space-x-2">
+                <div className="flex-1 h-1 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                  <div className="h-full bg-gradient-to-r from-purple-400 to-pink-500 rounded-full" style={{ width: '78%' }}></div>
+                </div>
+                <span className="text-xs text-gray-500 dark:text-gray-400">78%</span>
+              </div>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="card-hover bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-white/20 dark:border-gray-700/20">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Risk Metrics</CardTitle>
-              <Shield className="h-4 w-4 text-muted-foreground" />
+              <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-300">Risk Metrics</CardTitle>
+              <div className="p-2 bg-gradient-to-r from-red-400 to-orange-500 rounded-lg">
+                <Shield className="h-4 w-4 text-white" />
+              </div>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-red-600">
                 {formatPercentage(portfolioMetrics.maxDrawdown)}
               </div>
-              <p className="text-xs text-muted-foreground">
+              <p className="text-xs text-gray-500 dark:text-gray-400">
                 Max Drawdown
               </p>
+              <div className="mt-2 flex items-center space-x-2">
+                <div className="status-indicator status-warning"></div>
+                <span className="text-xs text-gray-500 dark:text-gray-400">Risk monitoring</span>
+              </div>
             </CardContent>
           </Card>
         </div>
 
-        {/* Risk Alert */}
-        <Alert>
-          <AlertTriangle className="h-4 w-4" />
-          <AlertDescription>
+        {/* Enhanced Risk Alert */}
+        <Alert className="bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 border border-amber-200 dark:border-amber-800/30">
+          <AlertTriangle className="h-4 w-4 text-amber-600" />
+          <AlertDescription className="text-amber-800 dark:text-amber-200">
             Portfolio margin utilization at {((portfolioMetrics.margin / portfolioMetrics.totalValue) * 100).toFixed(1)}%. 
             Current margin: {formatCurrency(portfolioMetrics.margin)}
           </AlertDescription>
         </Alert>
 
-        {/* Main Content Tabs */}
-        <Tabs defaultValue="ai" className="space-y-4">
-          <TabsList className="grid w-full grid-cols-7">
-            <TabsTrigger value="strategies">Strategies</TabsTrigger>
-            <TabsTrigger value="positions">Positions</TabsTrigger>
-            <TabsTrigger value="performance">Performance</TabsTrigger>
-            <TabsTrigger value="backtesting">Backtesting</TabsTrigger>
-            <TabsTrigger value="market">Market Data</TabsTrigger>
-            <TabsTrigger value="risk">Risk Management</TabsTrigger>
-            <TabsTrigger value="ai">AI System</TabsTrigger>
-          </TabsList>
+        {/* Enhanced Main Content Tabs */}
+        <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl border border-white/20 dark:border-gray-700/20 p-6">
+          <Tabs defaultValue="ai" className="space-y-4">
+            <TabsList className="grid w-full grid-cols-7 bg-gray-100 dark:bg-gray-700/50 p-1 rounded-lg">
+              <TabsTrigger value="strategies" className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-800 data-[state=active]:shadow-md transition-all duration-200">
+                <Target className="w-4 h-4 mr-2" />
+                Strategies
+              </TabsTrigger>
+              <TabsTrigger value="positions" className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-800 data-[state=active]:shadow-md transition-all duration-200">
+                <BarChart3 className="w-4 h-4 mr-2" />
+                Positions
+              </TabsTrigger>
+              <TabsTrigger value="performance" className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-800 data-[state=active]:shadow-md transition-all duration-200">
+                <TrendingUp className="w-4 h-4 mr-2" />
+                Performance
+              </TabsTrigger>
+              <TabsTrigger value="backtesting" className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-800 data-[state=active]:shadow-md transition-all duration-200">
+                <Activity className="w-4 h-4 mr-2" />
+                Backtesting
+              </TabsTrigger>
+              <TabsTrigger value="market" className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-800 data-[state=active]:shadow-md transition-all duration-200">
+                <Zap className="w-4 h-4 mr-2" />
+                Market
+              </TabsTrigger>
+              <TabsTrigger value="risk" className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-800 data-[state=active]:shadow-md transition-all duration-200">
+                <Shield className="w-4 h-4 mr-2" />
+                Risk
+              </TabsTrigger>
+              <TabsTrigger value="ai" className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-800 data-[state=active]:shadow-md transition-all duration-200">
+                <Brain className="w-4 h-4 mr-2" />
+                AI System
+              </TabsTrigger>
+            </TabsList>
 
           <TabsContent value="ai" className="space-y-4">
-            <Card>
+            <Card className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border border-blue-200 dark:border-blue-800/30">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Brain className="w-5 h-5" />
-                  AI-Powered Quantum Brain
+                  <div className="p-2 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg">
+                    <Brain className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <div className="text-xl font-bold gradient-text">AI-Powered Quantum Brain</div>
+                    <div className="text-sm text-gray-600 dark:text-gray-300">Self-Improving Adaptive Trading Platform</div>
+                  </div>
                 </CardTitle>
-                <CardDescription>
-                  Self-Improving Adaptive Trading Platform
-                </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-4">
-                    <h4 className="font-semibold">System Status</h4>
+                    <h4 className="font-semibold text-gray-700 dark:text-gray-200 flex items-center gap-2">
+                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                      System Status
+                    </h4>
                     <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <div className="text-sm text-muted-foreground">OODA Loop</div>
-                        <div className="text-lg font-semibold text-green-600">Active</div>
+                      <div className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-lg p-3 border border-white/20 dark:border-gray-700/20">
+                        <div className="text-sm text-gray-600 dark:text-gray-300">OODA Loop</div>
+                        <div className="text-lg font-semibold text-green-600 flex items-center gap-1">
+                          <div className="status-indicator status-active"></div>
+                          Active
+                        </div>
                       </div>
-                      <div>
-                        <div className="text-sm text-muted-foreground">Feature Store</div>
-                        <div className="text-lg font-semibold text-green-600">Online</div>
+                      <div className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-lg p-3 border border-white/20 dark:border-gray-700/20">
+                        <div className="text-sm text-gray-600 dark:text-gray-300">Feature Store</div>
+                        <div className="text-lg font-semibold text-green-600 flex items-center gap-1">
+                          <div className="status-indicator status-active"></div>
+                          Online
+                        </div>
                       </div>
-                      <div>
-                        <div className="text-sm text-muted-foreground">Strategy Discovery</div>
-                        <div className="text-lg font-semibold text-yellow-600">Evolving</div>
+                      <div className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-lg p-3 border border-white/20 dark:border-gray-700/20">
+                        <div className="text-sm text-gray-600 dark:text-gray-300">Strategy Discovery</div>
+                        <div className="text-lg font-semibold text-yellow-600 flex items-center gap-1">
+                          <div className="status-indicator status-warning"></div>
+                          Evolving
+                        </div>
                       </div>
-                      <div>
-                        <div className="text-sm text-muted-foreground">Risk Management</div>
-                        <div className="text-lg font-semibold text-green-600">Active</div>
+                      <div className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-lg p-3 border border-white/20 dark:border-gray-700/20">
+                        <div className="text-sm text-gray-600 dark:text-gray-300">Risk Management</div>
+                        <div className="text-lg font-semibold text-green-600 flex items-center gap-1">
+                          <div className="status-indicator status-active"></div>
+                          Active
+                        </div>
                       </div>
                     </div>
                   </div>
                   <div className="space-y-4">
-                    <h4 className="font-semibold">Performance Metrics</h4>
+                    <h4 className="font-semibold text-gray-700 dark:text-gray-200 flex items-center gap-2">
+                      <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                      Performance Metrics
+                    </h4>
                     <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <div className="text-sm text-muted-foreground">AI Confidence</div>
+                      <div className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-lg p-3 border border-white/20 dark:border-gray-700/20">
+                        <div className="text-sm text-gray-600 dark:text-gray-300">AI Confidence</div>
                         <div className="text-lg font-semibold text-blue-600">92.4%</div>
                       </div>
-                      <div>
-                        <div className="text-sm text-muted-foreground">Signal Strength</div>
+                      <div className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-lg p-3 border border-white/20 dark:border-gray-700/20">
+                        <div className="text-sm text-gray-600 dark:text-gray-300">Signal Strength</div>
                         <div className="text-lg font-semibold text-green-600">78.9%</div>
                       </div>
-                      <div>
-                        <div className="text-sm text-muted-foreground">Market Regime</div>
+                      <div className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-lg p-3 border border-white/20 dark:border-gray-700/20">
+                        <div className="text-sm text-gray-600 dark:text-gray-300">Market Regime</div>
                         <div className="text-lg font-semibold">Normal</div>
                       </div>
-                      <div>
-                        <div className="text-sm text-muted-foreground">Anomaly Score</div>
+                      <div className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-lg p-3 border border-white/20 dark:border-gray-700/20">
+                        <div className="text-sm text-gray-600 dark:text-gray-300">Anomaly Score</div>
                         <div className="text-lg font-semibold text-yellow-600">5.2%</div>
                       </div>
                     </div>
@@ -237,105 +324,150 @@ export default function TradingDashboard() {
               </CardContent>
             </Card>
 
-            <Tabs defaultValue="overview" className="space-y-4">
-              <TabsList className="grid w-full grid-cols-8">
-                <TabsTrigger value="overview">Overview</TabsTrigger>
-                <TabsTrigger value="ooda">OODA Loop</TabsTrigger>
-                <TabsTrigger value="features">Feature Store</TabsTrigger>
-                <TabsTrigger value="data">Alternative Data</TabsTrigger>
-                <TabsTrigger value="discovery">Strategy Discovery</TabsTrigger>
-                <TabsTrigger value="adaptive">Adaptive Mgmt</TabsTrigger>
-                <TabsTrigger value="risk">Predictive Risk</TabsTrigger>
-                <TabsTrigger value="execution">Execution Agent</TabsTrigger>
-                <TabsTrigger value="monitoring">Monitoring</TabsTrigger>
-              </TabsList>
+            <div className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-2xl border border-white/20 dark:border-gray-700/20 p-6">
+              <Tabs defaultValue="overview" className="space-y-4">
+                <TabsList className="grid w-full grid-cols-8 bg-gray-100 dark:bg-gray-700/50 p-1 rounded-lg">
+                  <TabsTrigger value="overview" className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-800 data-[state=active]:shadow-md transition-all duration-200 text-xs">
+                    Overview
+                  </TabsTrigger>
+                  <TabsTrigger value="ooda" className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-800 data-[state=active]:shadow-md transition-all duration-200 text-xs">
+                    OODA Loop
+                  </TabsTrigger>
+                  <TabsTrigger value="features" className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-800 data-[state=active]:shadow-md transition-all duration-200 text-xs">
+                    Features
+                  </TabsTrigger>
+                  <TabsTrigger value="data" className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-800 data-[state=active]:shadow-md transition-all duration-200 text-xs">
+                    Data
+                  </TabsTrigger>
+                  <TabsTrigger value="discovery" className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-800 data-[state=active]:shadow-md transition-all duration-200 text-xs">
+                    Discovery
+                  </TabsTrigger>
+                  <TabsTrigger value="adaptive" className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-800 data-[state=active]:shadow-md transition-all duration-200 text-xs">
+                    Adaptive
+                  </TabsTrigger>
+                  <TabsTrigger value="risk" className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-800 data-[state=active]:shadow-md transition-all duration-200 text-xs">
+                    Risk
+                  </TabsTrigger>
+                  <TabsTrigger value="execution" className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-800 data-[state=active]:shadow-md transition-all duration-200 text-xs">
+                    Execution
+                  </TabsTrigger>
+                  <TabsTrigger value="monitoring" className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-800 data-[state=active]:shadow-md transition-all duration-200 text-xs">
+                    Monitor
+                  </TabsTrigger>
+                </TabsList>
               
               <TabsContent value="overview">
-                <Card>
+                <Card className="bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-800/50 dark:to-blue-800/50 border border-slate-200 dark:border-slate-700/30">
                   <CardHeader>
-                    <CardTitle>AI System Overview</CardTitle>
-                    <CardDescription>Comprehensive view of all AI modules and their status</CardDescription>
+                    <CardTitle className="gradient-text">AI System Overview</CardTitle>
+                    <CardDescription className="text-gray-600 dark:text-gray-300">Comprehensive view of all AI modules and their status</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-4">
-                        <h4 className="font-semibold">Core AI Modules</h4>
+                        <h4 className="font-semibold text-gray-700 dark:text-gray-200 flex items-center gap-2">
+                          <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                          Core AI Modules
+                        </h4>
                         <div className="space-y-3">
-                          <div>
-                            <div className="flex justify-between text-sm">
-                              <span>OODA Loop System</span>
-                              <span>91%</span>
+                          <div className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-lg p-3 border border-white/20 dark:border-gray-700/20">
+                            <div className="flex justify-between text-sm mb-2">
+                              <span className="text-gray-600 dark:text-gray-300">OODA Loop System</span>
+                              <span className="font-semibold text-purple-600">91%</span>
                             </div>
-                            <Progress value={91} className="h-2" />
+                            <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
+                              <div className="h-full bg-gradient-to-r from-purple-400 to-pink-500 rounded-full progress-animated" style={{ width: '91%' }}></div>
+                            </div>
                           </div>
-                          <div>
-                            <div className="flex justify-between text-sm">
-                              <span>Feature Store</span>
-                              <span>88%</span>
+                          <div className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-lg p-3 border border-white/20 dark:border-gray-700/20">
+                            <div className="flex justify-between text-sm mb-2">
+                              <span className="text-gray-600 dark:text-gray-300">Feature Store</span>
+                              <span className="font-semibold text-blue-600">88%</span>
                             </div>
-                            <Progress value={88} className="h-2" />
+                            <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
+                              <div className="h-full bg-gradient-to-r from-blue-400 to-cyan-500 rounded-full progress-animated" style={{ width: '88%' }}></div>
+                            </div>
                           </div>
-                          <div>
-                            <div className="flex justify-between text-sm">
-                              <span>Strategy Discovery</span>
-                              <span>85%</span>
+                          <div className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-lg p-3 border border-white/20 dark:border-gray-700/20">
+                            <div className="flex justify-between text-sm mb-2">
+                              <span className="text-gray-600 dark:text-gray-300">Strategy Discovery</span>
+                              <span className="font-semibold text-green-600">85%</span>
                             </div>
-                            <Progress value={85} className="h-2" />
+                            <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
+                              <div className="h-full bg-gradient-to-r from-green-400 to-emerald-500 rounded-full progress-animated" style={{ width: '85%' }}></div>
+                            </div>
                           </div>
-                          <div>
-                            <div className="flex justify-between text-sm">
-                              <span>Adaptive Strategy Mgmt</span>
-                              <span>93%</span>
+                          <div className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-lg p-3 border border-white/20 dark:border-gray-700/20">
+                            <div className="flex justify-between text-sm mb-2">
+                              <span className="text-gray-600 dark:text-gray-300">Adaptive Strategy Mgmt</span>
+                              <span className="font-semibold text-orange-600">93%</span>
                             </div>
-                            <Progress value={93} className="h-2" />
+                            <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
+                              <div className="h-full bg-gradient-to-r from-orange-400 to-red-500 rounded-full progress-animated" style={{ width: '93%' }}></div>
+                            </div>
                           </div>
-                          <div>
-                            <div className="flex justify-between text-sm">
-                              <span>Predictive Risk Manager</span>
-                              <span>89%</span>
+                          <div className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-lg p-3 border border-white/20 dark:border-gray-700/20">
+                            <div className="flex justify-between text-sm mb-2">
+                              <span className="text-gray-600 dark:text-gray-300">Predictive Risk Manager</span>
+                              <span className="font-semibold text-red-600">89%</span>
                             </div>
-                            <Progress value={89} className="h-2" />
+                            <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
+                              <div className="h-full bg-gradient-to-r from-red-400 to-pink-500 rounded-full progress-animated" style={{ width: '89%' }}></div>
+                            </div>
                           </div>
-                          <div>
-                            <div className="flex justify-between text-sm">
-                              <span>Intelligent Execution Agent</span>
-                              <span>87%</span>
+                          <div className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-lg p-3 border border-white/20 dark:border-gray-700/20">
+                            <div className="flex justify-between text-sm mb-2">
+                              <span className="text-gray-600 dark:text-gray-300">Intelligent Execution Agent</span>
+                              <span className="font-semibold text-indigo-600">87%</span>
                             </div>
-                            <Progress value={87} className="h-2" />
+                            <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
+                              <div className="h-full bg-gradient-to-r from-indigo-400 to-purple-500 rounded-full progress-animated" style={{ width: '87%' }}></div>
+                            </div>
                           </div>
                         </div>
                       </div>
                       
                       <div className="space-y-4">
-                        <h4 className="font-semibold">Alternative Data Sources</h4>
+                        <h4 className="font-semibold text-gray-700 dark:text-gray-200 flex items-center gap-2">
+                          <div className="w-2 h-2 bg-cyan-500 rounded-full"></div>
+                          Alternative Data Sources
+                        </h4>
                         <div className="space-y-3">
-                          <div>
-                            <div className="flex justify-between text-sm">
-                              <span>News Sentiment</span>
-                              <span>82%</span>
+                          <div className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-lg p-3 border border-white/20 dark:border-gray-700/20">
+                            <div className="flex justify-between text-sm mb-2">
+                              <span className="text-gray-600 dark:text-gray-300">News Sentiment</span>
+                              <span className="font-semibold text-cyan-600">82%</span>
                             </div>
-                            <Progress value={82} className="h-2" />
+                            <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
+                              <div className="h-full bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full progress-animated" style={{ width: '82%' }}></div>
+                            </div>
                           </div>
-                          <div>
-                            <div className="flex justify-between text-sm">
-                              <span>Options Flow</span>
-                              <span>89%</span>
+                          <div className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-lg p-3 border border-white/20 dark:border-gray-700/20">
+                            <div className="flex justify-between text-sm mb-2">
+                              <span className="text-gray-600 dark:text-gray-300">Options Flow</span>
+                              <span className="font-semibold text-emerald-600">89%</span>
                             </div>
-                            <Progress value={89} className="h-2" />
+                            <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
+                              <div className="h-full bg-gradient-to-r from-emerald-400 to-green-500 rounded-full progress-animated" style={{ width: '89%' }}></div>
+                            </div>
                           </div>
-                          <div>
-                            <div className="flex justify-between text-sm">
-                              <span>Social Media</span>
-                              <span>76%</span>
+                          <div className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-lg p-3 border border-white/20 dark:border-gray-700/20">
+                            <div className="flex justify-between text-sm mb-2">
+                              <span className="text-gray-600 dark:text-gray-300">Social Media</span>
+                              <span className="font-semibold text-yellow-600">76%</span>
                             </div>
-                            <Progress value={76} className="h-2" />
+                            <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
+                              <div className="h-full bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full progress-animated" style={{ width: '76%' }}></div>
+                            </div>
                           </div>
-                          <div>
-                            <div className="flex justify-between text-sm">
-                              <span>Market Data</span>
-                              <span>95%</span>
+                          <div className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-lg p-3 border border-white/20 dark:border-gray-700/20">
+                            <div className="flex justify-between text-sm mb-2">
+                              <span className="text-gray-600 dark:text-gray-300">Market Data</span>
+                              <span className="font-semibold text-green-600">95%</span>
                             </div>
-                            <Progress value={95} className="h-2" />
+                            <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
+                              <div className="h-full bg-gradient-to-r from-green-400 to-emerald-500 rounded-full progress-animated" style={{ width: '95%' }}></div>
+                            </div>
                           </div>
                         </div>
                       </div>
