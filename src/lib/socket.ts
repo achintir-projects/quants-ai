@@ -1,7 +1,5 @@
 import { Server } from 'socket.io';
 
-<<<<<<< HEAD
-=======
 interface MarketDataUpdate {
   symbol: string;
   price: number;
@@ -50,16 +48,10 @@ interface StrategySignal {
   timestamp: Date;
 }
 
->>>>>>> d6e466b85a3e63aa609bbcc18e6867876e5de1be
 export const setupSocket = (io: Server) => {
   io.on('connection', (socket) => {
     console.log('Client connected:', socket.id);
     
-<<<<<<< HEAD
-    // Handle messages
-    socket.on('message', (msg: { text: string; senderId: string }) => {
-      // Echo: broadcast message only the client who send the message
-=======
     // Store client subscriptions
     const subscriptions: Set<string> = new Set();
     
@@ -206,7 +198,6 @@ export const setupSocket = (io: Server) => {
 
     // Handle custom messages
     socket.on('message', (msg: { text: string; senderId: string }) => {
->>>>>>> d6e466b85a3e63aa609bbcc18e6867876e5de1be
       socket.emit('message', {
         text: `Echo: ${msg.text}`,
         senderId: 'system',
@@ -217,24 +208,15 @@ export const setupSocket = (io: Server) => {
     // Handle disconnect
     socket.on('disconnect', () => {
       console.log('Client disconnected:', socket.id);
-<<<<<<< HEAD
-=======
       clearInterval(marketDataInterval);
       clearInterval(positionInterval);
       clearInterval(portfolioInterval);
       clearInterval(riskAlertInterval);
       clearInterval(strategySignalInterval);
->>>>>>> d6e466b85a3e63aa609bbcc18e6867876e5de1be
     });
 
     // Send welcome message
     socket.emit('message', {
-<<<<<<< HEAD
-      text: 'Welcome to WebSocket Echo Server!',
-      senderId: 'system',
-      timestamp: new Date().toISOString(),
-    });
-=======
       text: 'Welcome to Quantitative Trading Platform Real-Time Data!',
       senderId: 'system',
       timestamp: new Date().toISOString(),
@@ -246,6 +228,5 @@ export const setupSocket = (io: Server) => {
       timestamp: new Date().toISOString(),
       subscriptions: Array.from(subscriptions)
     });
->>>>>>> d6e466b85a3e63aa609bbcc18e6867876e5de1be
   });
 };

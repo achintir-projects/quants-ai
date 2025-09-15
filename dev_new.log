@@ -1,0 +1,47 @@
+
+> nextjs_tailwind_shadcn_ts@0.1.0 dev
+> nodemon --exec "npx tsx server.ts" --watch server.ts --watch src --ext ts,tsx,js,jsx 2>&1 | tee dev.log
+
+[33m[nodemon] 3.1.10[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching path(s): server.ts src/**/*[39m
+[33m[nodemon] watching extensions: ts,tsx,js,jsx[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+Error: Transform failed with 1 error:
+/home/z/my-project/quants-ai/src/lib/socket.ts:3:0: ERROR: Unexpected "<<"
+    at failureErrorWithLog (/home/z/my-project/node_modules/esbuild/lib/main.js:1467:15)
+    at /home/z/my-project/node_modules/esbuild/lib/main.js:736:50
+    at responseCallbacks.<computed> (/home/z/my-project/node_modules/esbuild/lib/main.js:603:9)
+    at handleIncomingPacket (/home/z/my-project/node_modules/esbuild/lib/main.js:658:12)
+    at Socket.readFromStdout (/home/z/my-project/node_modules/esbuild/lib/main.js:581:7)
+    at Socket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at Pipe.onStreamRead (node:internal/stream_base_commons:189:23) {
+  name: 'TransformError'
+}
+
+Node.js v22.19.0
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `npx tsx server.ts`[39m
+> Ready on http://0.0.0.0:3000
+> Socket.IO server running at ws://0.0.0.0:3000/api/socketio
+ ○ Compiling / ...
+ ✓ Compiled / in 6.4s (874 modules)
+ GET / 200 in 6985ms
+ GET / 200 in 88ms
+ GET / 200 in 150ms
+ GET / 200 in 158ms
+ GET / 200 in 393ms
+ GET / 200 in 215ms
+ GET / 200 in 200ms
+ ⚠ Cross origin request detected from preview-chat-29e94132-384e-4b8c-8a43-3d8e3841261a.space.z.ai to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+ GET / 200 in 78ms
+ GET / 200 in 83ms
