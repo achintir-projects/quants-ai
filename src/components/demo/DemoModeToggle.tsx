@@ -14,7 +14,7 @@ interface DemoModeToggleProps {
 
 export default function DemoModeToggle({ isDemoMode, onDemoModeChange }: DemoModeToggleProps) {
   return (
-    <Card className="w-full max-w-md">
+    <Card className="w-full max-w-md card-hover bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-white/20 dark:border-gray-700/20">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
         <CardTitle className="text-sm font-medium">Demo Mode</CardTitle>
         <div className="flex items-center space-x-2">
