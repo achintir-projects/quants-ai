@@ -20,6 +20,14 @@ import {
   Zap,
   Brain
 } from 'lucide-react'
+import OODALoopSystem from '@/components/ai/OODALoopSystem'
+import UnifiedFeatureStore from '@/components/ai/UnifiedFeatureStore'
+import AlternativeDataIntegration from '@/components/ai/AlternativeDataIntegration'
+import StrategyDiscoveryEngine from '@/components/ai/StrategyDiscoveryEngine'
+import AdaptiveStrategyManagement from '@/components/ai/AdaptiveStrategyManagement'
+import PredictiveRiskManager from '@/components/ai/PredictiveRiskManager'
+import IntelligentExecutionAgent from '@/components/ai/IntelligentExecutionAgent'
+import AIMonitoringDashboard from '@/components/ai/AIMonitoringDashboard'
 
 interface PortfolioMetrics {
   totalValue: number
@@ -229,85 +237,145 @@ export default function TradingDashboard() {
               </CardContent>
             </Card>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Zap className="w-4 h-4" />
-                    Core AI Modules
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <div>
-                    <div className="flex justify-between text-sm">
-                      <span>OODA Loop System</span>
-                      <span>91%</span>
+            <Tabs defaultValue="overview" className="space-y-4">
+              <TabsList className="grid w-full grid-cols-8">
+                <TabsTrigger value="overview">Overview</TabsTrigger>
+                <TabsTrigger value="ooda">OODA Loop</TabsTrigger>
+                <TabsTrigger value="features">Feature Store</TabsTrigger>
+                <TabsTrigger value="data">Alternative Data</TabsTrigger>
+                <TabsTrigger value="discovery">Strategy Discovery</TabsTrigger>
+                <TabsTrigger value="adaptive">Adaptive Mgmt</TabsTrigger>
+                <TabsTrigger value="risk">Predictive Risk</TabsTrigger>
+                <TabsTrigger value="execution">Execution Agent</TabsTrigger>
+                <TabsTrigger value="monitoring">Monitoring</TabsTrigger>
+              </TabsList>
+              
+              <TabsContent value="overview">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>AI System Overview</CardTitle>
+                    <CardDescription>Comprehensive view of all AI modules and their status</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-4">
+                        <h4 className="font-semibold">Core AI Modules</h4>
+                        <div className="space-y-3">
+                          <div>
+                            <div className="flex justify-between text-sm">
+                              <span>OODA Loop System</span>
+                              <span>91%</span>
+                            </div>
+                            <Progress value={91} className="h-2" />
+                          </div>
+                          <div>
+                            <div className="flex justify-between text-sm">
+                              <span>Feature Store</span>
+                              <span>88%</span>
+                            </div>
+                            <Progress value={88} className="h-2" />
+                          </div>
+                          <div>
+                            <div className="flex justify-between text-sm">
+                              <span>Strategy Discovery</span>
+                              <span>85%</span>
+                            </div>
+                            <Progress value={85} className="h-2" />
+                          </div>
+                          <div>
+                            <div className="flex justify-between text-sm">
+                              <span>Adaptive Strategy Mgmt</span>
+                              <span>93%</span>
+                            </div>
+                            <Progress value={93} className="h-2" />
+                          </div>
+                          <div>
+                            <div className="flex justify-between text-sm">
+                              <span>Predictive Risk Manager</span>
+                              <span>89%</span>
+                            </div>
+                            <Progress value={89} className="h-2" />
+                          </div>
+                          <div>
+                            <div className="flex justify-between text-sm">
+                              <span>Intelligent Execution Agent</span>
+                              <span>87%</span>
+                            </div>
+                            <Progress value={87} className="h-2" />
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="space-y-4">
+                        <h4 className="font-semibold">Alternative Data Sources</h4>
+                        <div className="space-y-3">
+                          <div>
+                            <div className="flex justify-between text-sm">
+                              <span>News Sentiment</span>
+                              <span>82%</span>
+                            </div>
+                            <Progress value={82} className="h-2" />
+                          </div>
+                          <div>
+                            <div className="flex justify-between text-sm">
+                              <span>Options Flow</span>
+                              <span>89%</span>
+                            </div>
+                            <Progress value={89} className="h-2" />
+                          </div>
+                          <div>
+                            <div className="flex justify-between text-sm">
+                              <span>Social Media</span>
+                              <span>76%</span>
+                            </div>
+                            <Progress value={76} className="h-2" />
+                          </div>
+                          <div>
+                            <div className="flex justify-between text-sm">
+                              <span>Market Data</span>
+                              <span>95%</span>
+                            </div>
+                            <Progress value={95} className="h-2" />
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <Progress value={91} className="h-2" />
-                  </div>
-                  <div>
-                    <div className="flex justify-between text-sm">
-                      <span>Feature Store</span>
-                      <span>88%</span>
-                    </div>
-                    <Progress value={88} className="h-2" />
-                  </div>
-                  <div>
-                    <div className="flex justify-between text-sm">
-                      <span>Strategy Discovery</span>
-                      <span>85%</span>
-                    </div>
-                    <Progress value={85} className="h-2" />
-                  </div>
-                  <div>
-                    <div className="flex justify-between text-sm">
-                      <span>Risk Management</span>
-                      <span>93%</span>
-                    </div>
-                    <Progress value={93} className="h-2" />
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Target className="w-4 h-4" />
-                    Alternative Data Sources
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <div>
-                    <div className="flex justify-between text-sm">
-                      <span>News Sentiment</span>
-                      <span>82%</span>
-                    </div>
-                    <Progress value={82} className="h-2" />
-                  </div>
-                  <div>
-                    <div className="flex justify-between text-sm">
-                      <span>Options Flow</span>
-                      <span>89%</span>
-                    </div>
-                    <Progress value={89} className="h-2" />
-                  </div>
-                  <div>
-                    <div className="flex justify-between text-sm">
-                      <span>Social Media</span>
-                      <span>76%</span>
-                    </div>
-                    <Progress value={76} className="h-2" />
-                  </div>
-                  <div>
-                    <div className="flex justify-between text-sm">
-                      <span>Market Data</span>
-                      <span>95%</span>
-                    </div>
-                    <Progress value={95} className="h-2" />
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+              
+              <TabsContent value="ooda">
+                <OODALoopSystem />
+              </TabsContent>
+              
+              <TabsContent value="features">
+                <UnifiedFeatureStore />
+              </TabsContent>
+              
+              <TabsContent value="data">
+                <AlternativeDataIntegration />
+              </TabsContent>
+              
+              <TabsContent value="discovery">
+                <StrategyDiscoveryEngine />
+              </TabsContent>
+              
+              <TabsContent value="adaptive">
+                <AdaptiveStrategyManagement />
+              </TabsContent>
+              
+              <TabsContent value="risk">
+                <PredictiveRiskManager />
+              </TabsContent>
+              
+              <TabsContent value="execution">
+                <IntelligentExecutionAgent />
+              </TabsContent>
+              
+              <TabsContent value="monitoring">
+                <AIMonitoringDashboard />
+              </TabsContent>
+            </Tabs>
           </TabsContent>
 
           <TabsContent value="strategies" className="space-y-4">
