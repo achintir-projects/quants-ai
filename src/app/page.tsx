@@ -23,6 +23,7 @@ import VolatilityStrategy from '@/components/strategies/VolatilityStrategy'
 import SkewArbitrage from '@/components/strategies/SkewArbitrage'
 import CalendarSpread from '@/components/strategies/CalendarSpread'
 import RiskManagement from '@/components/risk/RiskManagement'
+import PortfolioManagement from '@/components/portfolio/PortfolioManagement'
 
 interface PortfolioMetrics {
   totalValue: number
@@ -367,18 +368,7 @@ export default function TradingDashboard() {
           </TabsContent>
 
           <TabsContent value="performance" className="space-y-4">
-            <Card>
-              <CardHeader>
-                <CardTitle>Performance Analytics</CardTitle>
-                <CardDescription>Comprehensive performance metrics and charts</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="text-center py-8">
-                  <BarChart3 className="w-12 h-12 mx-auto text-muted-foreground mb-4" />
-                  <p className="text-muted-foreground">Performance charts and analytics coming soon...</p>
-                </div>
-              </CardContent>
-            </Card>
+            <PortfolioManagement />
           </TabsContent>
 
           <TabsContent value="risk" className="space-y-4">
