@@ -17,7 +17,8 @@ import {
   Shield,
   BarChart3,
   Clock,
-  Zap
+  Zap,
+  Brain
 } from 'lucide-react'
 import VolatilityStrategy from '@/components/strategies/VolatilityStrategy'
 import SkewArbitrage from '@/components/strategies/SkewArbitrage'
@@ -26,6 +27,10 @@ import RiskManagement from '@/components/risk/RiskManagement'
 import PortfolioManagement from '@/components/portfolio/PortfolioManagement'
 import MarketData from '@/components/market/MarketData'
 import BacktestingEngine from '@/components/backtesting/BacktestingEngine'
+import OODALoopSystem from '@/components/ai/OODALoopSystem'
+import UnifiedFeatureStore from '@/components/ai/UnifiedFeatureStore'
+import AlternativeDataIntegration from '@/components/ai/AlternativeDataIntegration'
+import StrategyDiscoveryEngine from '@/components/ai/StrategyDiscoveryEngine'
 
 interface PortfolioMetrics {
   totalValue: number
@@ -187,13 +192,17 @@ export default function TradingDashboard() {
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold tracking-tight">Quantitative Trading Dashboard</h1>
-            <p className="text-muted-foreground">Advanced Options Trading Platform</p>
+            <h1 className="text-3xl font-bold tracking-tight">AI-Powered Quantum Brain</h1>
+            <p className="text-muted-foreground">Self-Improving Adaptive Trading Platform</p>
           </div>
           <div className="flex items-center space-x-2">
             <Badge variant="outline" className="text-green-600 border-green-600">
               <Activity className="w-3 h-3 mr-1" />
               Live Trading
+            </Badge>
+            <Badge variant="outline" className="text-blue-600 border-blue-600">
+              <Brain className="w-3 h-3 mr-1" />
+              AI Active
             </Badge>
             <Badge variant="outline">
               <Clock className="w-3 h-3 mr-1" />
@@ -278,13 +287,14 @@ export default function TradingDashboard() {
 
         {/* Main Content Tabs */}
         <Tabs defaultValue="strategies" className="space-y-4">
-          <TabsList className="grid w-full grid-cols-6">
+          <TabsList className="grid w-full grid-cols-7">
             <TabsTrigger value="strategies">Strategies</TabsTrigger>
             <TabsTrigger value="positions">Positions</TabsTrigger>
             <TabsTrigger value="performance">Performance</TabsTrigger>
             <TabsTrigger value="backtesting">Backtesting</TabsTrigger>
             <TabsTrigger value="market">Market Data</TabsTrigger>
             <TabsTrigger value="risk">Risk Management</TabsTrigger>
+            <TabsTrigger value="ai">AI System</TabsTrigger>
           </TabsList>
 
           <TabsContent value="strategies" className="space-y-4">
@@ -385,6 +395,33 @@ export default function TradingDashboard() {
 
           <TabsContent value="risk" className="space-y-4">
             <RiskManagement />
+          </TabsContent>
+
+          <TabsContent value="ai" className="space-y-4">
+            <Tabs defaultValue="ooda" className="space-y-4">
+              <TabsList className="grid w-full grid-cols-4">
+                <TabsTrigger value="ooda">OODA Loop</TabsTrigger>
+                <TabsTrigger value="features">Feature Store</TabsTrigger>
+                <TabsTrigger value="data">Alternative Data</TabsTrigger>
+                <TabsTrigger value="discovery">Strategy Discovery</TabsTrigger>
+              </TabsList>
+              
+              <TabsContent value="ooda">
+                <OODALoopSystem />
+              </TabsContent>
+              
+              <TabsContent value="features">
+                <UnifiedFeatureStore />
+              </TabsContent>
+              
+              <TabsContent value="data">
+                <AlternativeDataIntegration />
+              </TabsContent>
+              
+              <TabsContent value="discovery">
+                <StrategyDiscoveryEngine />
+              </TabsContent>
+            </Tabs>
           </TabsContent>
         </Tabs>
       </div>
