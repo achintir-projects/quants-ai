@@ -27,6 +27,8 @@ import RiskManagement from '@/components/risk/RiskManagement'
 import PortfolioManagement from '@/components/portfolio/PortfolioManagement'
 import MarketData from '@/components/market/MarketData'
 import BacktestingEngine from '@/components/backtesting/BacktestingEngine'
+import TestComponent from '@/components/TestComponent'
+import SimpleAIComponent from '@/components/ai/SimpleAIComponent'
 import OODALoopSystem from '@/components/ai/OODALoopSystem'
 import UnifiedFeatureStore from '@/components/ai/UnifiedFeatureStore'
 import AlternativeDataIntegration from '@/components/ai/AlternativeDataIntegration'
@@ -286,7 +288,7 @@ export default function TradingDashboard() {
         </Alert>
 
         {/* Main Content Tabs */}
-        <Tabs defaultValue="strategies" className="space-y-4">
+        <Tabs defaultValue="ai" className="space-y-4">
           <TabsList className="grid w-full grid-cols-7">
             <TabsTrigger value="strategies">Strategies</TabsTrigger>
             <TabsTrigger value="positions">Positions</TabsTrigger>
@@ -398,6 +400,8 @@ export default function TradingDashboard() {
           </TabsContent>
 
           <TabsContent value="ai" className="space-y-4">
+            <TestComponent />
+            <SimpleAIComponent />
             <Tabs defaultValue="ooda" className="space-y-4">
               <TabsList className="grid w-full grid-cols-4">
                 <TabsTrigger value="ooda">OODA Loop</TabsTrigger>
